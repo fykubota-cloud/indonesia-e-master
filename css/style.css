@@ -132,3 +132,53 @@ footer{
     color:#9ca3af;
     font-size:13px;
 }
+.quiz-card{
+    background:white;
+    border-radius:20px;
+    padding:22px;
+    margin:20px 0;
+    box-shadow:0 8px 22px rgba(3,110,183,.10);
+}
+
+.category-label{
+    display:inline-block;
+    background:#e8f5ee;
+    color:#1EAA39;
+    padding:6px 12px;
+    border-radius:999px;
+    font-weight:bold;
+    font-size:13px;
+    margin-bottom:14px;
+}
+
+.question-text{
+    font-size:22px;
+    font-weight:bold;
+    line-height:1.6;
+    margin-bottom:18px;
+}
+
+.feedback-box{
+    background:#f9fafb;
+    border-radius:16px;
+    padding:16px;
+    margin-top:18px;
+    line-height:1.8;
+}
+
+.feedback-box h3{
+    margin-top:0;
+}
+
+#choices button{
+    background:white;
+    color:#036EB7;
+    border:2px solid #dbeafe;
+    box-shadow:none;
+}
+
+#choices button:hover{
+    background:#e8f5ee;
+    color:#1EAA39;
+    border-color:#1EAA39;
+}
