@@ -182,3 +182,22 @@ footer{
     color:#1EAA39;
     border-color:#1EAA39;
 }
+.translation{
+    display:block;
+    margin-top:12px;
+    font-size:15px;
+    color:#6b7280;
+    font-style:italic;
+}
+
+.correct-choice{
+    background:#1EAA39 !important;
+    color:white !important;
+    border-color:#1EAA39 !important;
+}
+
+.wrong-choice{
+    background:#ef4444 !important;
+    color:white !important;
+    border-color:#ef4444 !important;
+}
