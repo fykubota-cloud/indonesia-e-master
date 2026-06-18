@@ -1,28 +1,32 @@
 let currentQuestion = null;
 let questionNumber = 0;
 let score = 0;
+let quizQuestions = [];
 const maxQuestions = 30;
 
 function startQuiz() {
     questionNumber = 0;
     score = 0;
+
+    // 問題をシャッフルして出題リストを作る
+    quizQuestions = [...questionBank];
+    quizQuestions.sort(() => Math.random() - 0.5);
+
     showScreen("quiz30");
     loadQuestion();
 }
 
 function loadQuestion(){
-    if(questionNumber >= maxQuestions){
+    if(questionNumber >= maxQuestions || questionNumber >= quizQuestions.length){
         showResult();
         return;
     }
 
+    currentQuestion = quizQuestions[questionNumber];
     questionNumber++;
 
-    currentQuestion =
-        questionBank[Math.floor(Math.random() * questionBank.length)];
-
     document.getElementById("question-category").textContent =
-        `${currentQuestion.category}　${questionNumber} / ${maxQuestions}`;
+        `${currentQuestion.category}　${questionNumber} / ${Math.min(maxQuestions, quizQuestions.length)}`;
 
     document.getElementById("question-text").textContent =
         currentQuestion.question;
@@ -77,12 +81,13 @@ function checkAnswer(choice){
 }
 
 function showResult(){
-    const rate = Math.round((score / maxQuestions) * 100);
-    const judge = score >= 18 ? "合格ライン到達" : "もう少し練習しましょう";
+    const total = Math.min(maxQuestions, quizQuestions.length);
+    const rate = Math.round((score / total) * 100);
+    const judge = rate >= 60 ? "合格ライン到達" : "もう少し練習しましょう";
 
     document.getElementById("question-category").textContent = "結果";
     document.getElementById("question-text").innerHTML = `
-        ${score} / ${maxQuestions} 問正解<br>
+        ${score} / ${total} 問正解<br>
         正答率：${rate}%<br>
         判定：${judge}
     `;
