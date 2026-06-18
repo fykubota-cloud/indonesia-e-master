@@ -4,45 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Indonesia E級 Master</title>
-
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
 <div class="container">
 
+  <section id="home">
     <h1>🇮🇩 Indonesia E級 Master</h1>
 
-    <p class="sub">
-        インドネシア語検定E級 合格対策システム
-    </p>
+    <p class="sub">インドネシア語検定E級 合格対策システム</p>
 
-    <button>📖 総合30問</button>
+    <button onclick="showScreen('quiz30')">📖 総合30問</button>
+    <button onclick="showScreen('quiz50')">📝 総合50問</button>
+    <button onclick="showScreen('mock')">🎯 模擬試験</button>
+    <button onclick="showScreen('weak')">💪 苦手克服</button>
+    <button onclick="showScreen('words')">📚 単語帳</button>
+    <button onclick="showScreen('dictionary')">🔤 me・ber辞典</button>
+    <button onclick="showScreen('stats')">📊 学習統計</button>
+    <button onclick="showScreen('settings')">⚙️ 設定</button>
 
-    <button>📝 総合50問</button>
+    <footer>Version 0.2</footer>
+  </section>
 
-    <button>🎯 模擬試験</button>
+  <section id="quiz30" class="screen">
+    <h2>📖 総合30問</h2>
+    <p>ここに30問ランダム出題機能を作ります。</p>
+    <button onclick="showScreen('home')">ホームへ戻る</button>
+  </section>
 
-    <button>💪 苦手克服</button>
+  <section id="quiz50" class="screen">
+    <h2>📝 総合50問</h2>
+    <p>ここに50問練習モードを作ります。</p>
+    <button onclick="showScreen('home')">ホームへ戻る</button>
+  </section>
 
-    <button>📚 単語帳</button>
+  <section id="mock" class="screen">
+    <h2>🎯 模擬試験</h2>
+    <p>本番形式の模擬試験を作ります。</p>
+    <button onclick="showScreen('home')">ホームへ戻る</button>
+  </section>
 
-    <button>🔤 me・ber辞典</button>
+  <section id="weak" class="screen">
+    <h2>💪 苦手克服</h2>
+    <p>間違えた問題や苦手分野を出題します。</p>
+    <button onclick="showScreen('home')">ホームへ戻る</button>
+  </section>
 
-    <button>📊 学習統計</button>
+  <section id="words" class="screen">
+    <h2>📚 単語帳</h2>
+    <p>曜日・月・数字・頻度・助数詞などを整理します。</p>
+    <button onclick="showScreen('home')">ホームへ戻る</button>
+  </section>
 
-    <button>⚙️ 設定</button>
+  <section id="dictionary" class="screen">
+    <h2>🔤 me・ber辞典</h2>
+    <p>me動詞・ber動詞の変化を一覧化します。</p>
+    <button onclick="showScreen('home')">ホームへ戻る</button>
+  </section>
 
-    <footer>
+  <section id="stats" class="screen">
+    <h2>📊 学習統計</h2>
+    <p>正答率・苦手分野を表示します。</p>
+    <button onclick="showScreen('home')">ホームへ戻る</button>
+  </section>
 
-        Version 0.1
-
-    </footer>
+  <section id="settings" class="screen">
+    <h2>⚙️ 設定</h2>
+    <p>出題数やモード設定をここで変更できるようにします。</p>
+    <button onclick="showScreen('home')">ホームへ戻る</button>
+  </section>
 
 </div>
 
 <script src="js/app.js"></script>
-
 </body>
 </html>
