@@ -59,3 +59,17 @@ footer{
     color:#999;
 
 }
+.screen{
+    display:none;
+}
+
+h2{
+    text-align:center;
+    color:#036EB7;
+}
+
+section p{
+    text-align:center;
+    color:#555;
+    line-height:1.8;
+}
