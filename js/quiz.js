@@ -8,7 +8,6 @@ function startQuiz() {
     questionNumber = 0;
     score = 0;
 
-    // 問題をシャッフルして出題リストを作る
     quizQuestions = [...questionBank];
     quizQuestions.sort(() => Math.random() - 0.5);
 
@@ -67,6 +66,8 @@ function checkAnswer(choice){
         <button onclick="loadQuestion()">次の問題</button>
         `;
     }else{
+        saveMistake(currentQuestion.id);
+
         feedback.innerHTML = `
         <h3>❌ 不正解</h3>
         <b>あなたの回答</b><br>${choice}<br><br>
@@ -78,6 +79,16 @@ function checkAnswer(choice){
         <button onclick="loadQuestion()">次の問題</button>
         `;
     }
+}
+
+function saveMistake(questionId){
+    let mistakes = JSON.parse(localStorage.getItem("mistakes")) || [];
+
+    if(!mistakes.includes(questionId)){
+        mistakes.push(questionId);
+    }
+
+    localStorage.setItem("mistakes", JSON.stringify(mistakes));
 }
 
 function showResult(){
