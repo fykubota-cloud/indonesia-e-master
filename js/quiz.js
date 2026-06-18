@@ -24,11 +24,11 @@ function loadQuestion(){
     currentQuestion = quizQuestions[questionNumber];
     questionNumber++;
 
-    document.getElementById("question-category").textContent =
-        `${currentQuestion.category}　${questionNumber} / ${Math.min(maxQuestions, quizQuestions.length)}`;
+    document.getElementById("question-category").innerHTML =
+        `第${questionNumber}問 / ${Math.min(maxQuestions, quizQuestions.length)}　${currentQuestion.category}　${currentQuestion.level}`;
 
-    document.getElementById("question-text").textContent =
-        currentQuestion.question;
+    document.getElementById("question-text").innerHTML =
+        `${currentQuestion.question}<br><span class="translation">${currentQuestion.translation}</span>`;
 
     document.getElementById("feedback").innerHTML = "";
 
@@ -52,6 +52,14 @@ function checkAnswer(choice){
 
     choiceButtons.forEach(button => {
         button.disabled = true;
+
+        if(button.textContent === currentQuestion.answer){
+            button.classList.add("correct-choice");
+        }
+
+        if(button.textContent === choice && choice !== currentQuestion.answer){
+            button.classList.add("wrong-choice");
+        }
     });
 
     if(choice === currentQuestion.answer){
@@ -72,10 +80,11 @@ function checkAnswer(choice){
         <h3>❌ 不正解</h3>
         <b>あなたの回答</b><br>${choice}<br><br>
         <b>正解</b><br>${currentQuestion.answer}<br><br>
-        <b>理由</b><br>${currentQuestion.wrongExplanation[choice]}<br><br>
+        <b>なぜ違う？</b><br>${currentQuestion.wrongExplanation[choice]}<br><br>
         <b>発音</b><br>${currentQuestion.pronunciation}<br><br>
         <b>意味</b><br>${currentQuestion.meaning}<br><br>
         <b>解説</b><br>${currentQuestion.explanation}<br><br>
+        <b>関連単語</b><br>${currentQuestion.related.join(" / ")}<br><br>
         <button onclick="loadQuestion()">次の問題</button>
         `;
     }
