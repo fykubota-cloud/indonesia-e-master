@@ -104,7 +104,10 @@ function showResult(){
     const total = Math.min(maxQuestions, quizQuestions.length);
     const rate = Math.round((score / total) * 100);
     const judge = rate >= 60 ? "合格ライン到達" : "もう少し練習しましょう";
-
+    
+　　saveStats(score, total);
+　　updateHomeStats();
+    
     document.getElementById("question-category").textContent = "結果";
     document.getElementById("question-text").innerHTML = `
         ${score} / ${total} 問正解<br>
@@ -117,4 +120,15 @@ function showResult(){
         <button onclick="startQuiz()">もう一度挑戦</button>
         <button onclick="showScreen('home')" class="secondary">ホームへ戻る</button>
     `;
+}
+function updateHomeStats(){
+    const stats = getStats();
+    const accuracy = getAccuracy();
+
+    const statNumbers = document.querySelectorAll(".stat-number");
+
+    if(statNumbers.length >= 2){
+        statNumbers[0].textContent = accuracy + "%";
+        statNumbers[1].textContent = stats.totalAnswered;
+    }
 }
