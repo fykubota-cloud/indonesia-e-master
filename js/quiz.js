@@ -6,6 +6,7 @@ const maxQuestions = 30;
 
 function startQuiz() {
     questionNumber = 0;
+    updateProgress();
     score = 0;
 
     quizQuestions = [...questionBank];
@@ -131,4 +132,14 @@ function updateHomeStats(){
         statNumbers[0].textContent = accuracy + "%";
         statNumbers[1].textContent = stats.totalAnswered;
     }
+}
+function updateProgress(){
+    const total = Math.min(maxQuestions, quizQuestions.length);
+    const percent = Math.round((questionNumber / total) * 100);
+
+    document.getElementById("progress-text").textContent =
+        questionNumber + " / " + total;
+
+    document.getElementById("progress-fill").style.width =
+        percent + "%";
 }
