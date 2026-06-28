@@ -100,10 +100,41 @@
   </section>
 
   <section id="dictionary" class="screen">
-    <h2>🔤 me・ber辞典</h2>
-    <p>me動詞・ber動詞の変化を一覧化します。</p>
-    <button onclick="showScreen('home')">ホームへ戻る</button>
-  </section>
+  <h2>🔤 me・ber辞典</h2>
+
+  <div class="dict-card">
+    <h3>me動詞の基本</h3>
+    <p>
+      me動詞は「〜する」という動作を表す形です。<br>
+      語根の最初の文字によって形が変わります。
+    </p>
+
+    <ul>
+      <li><b>baca</b> → <b>membaca</b>：読む</li>
+      <li><b>tulis</b> → <b>menulis</b>：書く</li>
+      <li><b>sapu</b> → <b>menyapu</b>：掃く</li>
+      <li><b>kirim</b> → <b>mengirim</b>：送る</li>
+      <li><b>masak</b> → <b>memasak</b>：料理する</li>
+    </ul>
+  </div>
+
+  <div class="dict-card">
+    <h3>ber動詞の基本</h3>
+    <p>
+      ber動詞は「状態・活動・自然な動作」を表すことが多いです。
+    </p>
+
+    <ul>
+      <li><b>kerja</b> → <b>bekerja</b>：働く</li>
+      <li><b>main</b> → <b>bermain</b>：遊ぶ</li>
+      <li><b>jalan</b> → <b>berjalan</b>：歩く</li>
+      <li><b>temu</b> → <b>bertemu</b>：会う</li>
+      <li><b>lari</b> → <b>berlari</b>：走る</li>
+    </ul>
+  </div>
+
+  <button onclick="showScreen('home')" class="secondary">ホームへ戻る</button>
+</section>
 
   <section id="stats" class="screen">
     <h2>📊 学習統計</h2>
@@ -125,3 +156,24 @@
 <script src="js/app.js"></script>
 </body>
 </html>
+.dict-card{
+    background:white;
+    border-radius:20px;
+    padding:18px;
+    margin:18px 0;
+    box-shadow:0 8px 22px rgba(3,110,183,.10);
+}
+
+.dict-card h3{
+    color:#036EB7;
+    margin-top:0;
+}
+
+.dict-card p{
+    text-align:left;
+}
+
+.dict-card ul{
+    padding-left:20px;
+    line-height:2;
+}
