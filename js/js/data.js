@@ -82,4 +82,22 @@ const questionBank = [
   q("VOC-0003","語彙","★★☆","rumah sakit の意味は？","rumah sakit の意味を選びます。",["学校","病院","市場","郵便局"],"病院","ルマ サキット","rumah sakit＝病院","sakit は病気・痛いという意味です。",{学校:"sekolah です。",市場:"pasar です。",郵便局:"kantor pos です。"},["sakit＝病気","dokter＝医者"]),
   q("VOC-0004","語彙","★★☆","pasar の意味は？","pasar の意味を選びます。",["市場","学校","公園","駅"],"市場","パサール","pasar＝市場","買い物に関係する場所です。",{学校:"sekolah です。",公園:"taman です。",駅:"stasiun です。"},["membeli＝買う","harga＝値段"]),
   q("VOC-0005","語彙","★★☆","lapar の意味は？","lapar の意味を選びます。",["眠い","疲れた","空腹である","喉が渇いた"],"空腹である","ラパール","lapar＝空腹である","状態を表す語です。",{眠い:"mengantuk です。",疲れた:"capai です。",喉が渇いた:"haus です。"},["makan＝食べる","haus＝喉が渇いた"])
-,
+];
+      q("ME-0005","me動詞","★★★","kirim の正しい me-形は？","kirim の me形を選びます。",["mengirim","menirim","memirim","menyirim"],"mengirim","ムギリム","mengirim＝送る","kirim は k が消えて mengirim になります。",{menirim:"誤った形です。",memirim:"誤った形です。",menyirim:"誤った形です。"},["surat＝手紙","paket＝荷物"]),
+  q("ME-0006","me動詞","★★☆","Saya ___ surat.","私は手紙を書きます。",["menulis","membaca","menyapu","mengirim"],"menulis","ムヌリス","menulis＝書く","surat を書くので menulis が正解です。",{membaca:"読むです。",menyapu:"掃くです。",mengirim:"送るです。"},["surat＝手紙","pensil＝鉛筆"]),
+  q("ME-0007","me動詞","★★☆","Dia ___ buku.","彼・彼女は本を読みます。",["membaca","menulis","memasak","mencuci"],"membaca","ムンバチャ","membaca＝読む","buku を読むので membaca です。",{menulis:"書くです。",memasak:"料理するです。",mencuci:"洗うです。"},["buku＝本","koran＝新聞"]),
+  q("ME-0008","me動詞","★★☆","Ibu ___ pakaian.","母は服を洗います。",["mencuci","membeli","membaca","menjual"],"mencuci","ムンチュチ","mencuci＝洗う","pakaian は服なので、服を洗う＝mencuci pakaian です。",{membeli:"買うです。",membaca:"読むです。",menjual:"売るです。"},["pakaian＝服","air＝水"]),
+  q("ME-0009","me動詞","★★☆","Saya ___ nasi goreng.","私はナシゴレンを食べます。",["makan","memasak","membaca","menulis"],"makan","マカン","makan＝食べる","E級では makan はそのまま出ることも多いです。",{memasak:"料理するです。",membaca:"読むです。",menulis:"書くです。"},["nasi＝ご飯","goreng＝揚げる・炒める"]),
+  q("ME-0010","me動詞","★★★","ambil の正しい me-形は？","ambil の me形を選びます。",["mengambil","menambil","memambil","menyambil"],"mengambil","ムンガンビル","mengambil＝取る","母音で始まる語根は meng- になることが多いです。",{menambil:"誤った形です。",memambil:"誤った形です。",menyambil:"誤った形です。"},["ambil＝取る","uang＝お金"]),
+
+  q("BER-0004","ber動詞","★★☆","berlari の意味は？","berlari の意味を選びます。",["歩く","走る","働く","会う"],"走る","ブルラリ","berlari＝走る","lari は走る、berlari も走るという意味です。",{歩く:"berjalan です。",働く:"bekerja です。",会う:"bertemu です。"},["jalan＝道・歩く","lari＝走る"]),
+  q("BER-0005","ber動詞","★★☆","bertemu の意味は？","bertemu の意味を選びます。",["遊ぶ","会う","働く","話す"],"会う","ブルトゥム","bertemu＝会う","人と会う時に使います。",{遊ぶ:"bermain です。",働く:"bekerja です。",話す:"berbicara です。"},["teman＝友だち","orang＝人"]),
+  q("BER-0006","ber動詞","★★☆","Mereka ___ sepak bola.","彼らはサッカーをします。",["bermain","bekerja","berjalan","bertemu"],"bermain","ブルマイン","bermain＝遊ぶ・プレーする","スポーツをする場合も bermain を使えます。",{bekerja:"働くです。",berjalan:"歩くです。",bertemu:"会うです。"},["sepak bola＝サッカー","anak-anak＝子どもたち"]),
+  q("BER-0007","ber動詞","★★☆","Saya ___ dengan teman.","私は友だちと話します。",["berbicara","berlari","bekerja","berjalan"],"berbicara","ブルビチャラ","berbicara＝話す","dengan teman＝友だちと、なので berbicara が自然です。",{berlari:"走るです。",bekerja:"働くです。",berjalan:"歩くです。"},["bicara＝話す","teman＝友だち"]),
+  q("BER-0008","ber動詞","★★☆","Dia ___ di kantor.","彼・彼女は会社で働きます。",["bekerja","bermain","berlari","bertemu"],"bekerja","ブクルジャ","bekerja＝働く","di kantor＝会社で、なので bekerja が正解です。",{bermain:"遊ぶです。",berlari:"走るです。",bertemu:"会うです。"},["kantor＝会社","pekerjaan＝仕事"]),
+
+  q("READ-0002","読解","★★★","Ani pergi ke pasar untuk membeli sayur.","アニは何を買うために市場へ行きますか？",["果物","野菜","本","薬"],"野菜","サユール","sayur＝野菜","membeli sayur は『野菜を買う』です。",{果物:"buah です。",本:"buku です。",薬:"obat です。"},["pasar＝市場","membeli＝買う"]),
+  q("READ-0003","読解","★★★","Budi belajar bahasa Indonesia setiap malam.","ブディはいつインドネシア語を勉強しますか？",["毎朝","毎晩","毎週","毎月"],"毎晩","スティアップ マラム","setiap malam＝毎晩","malam は夜、setiap は毎〜です。",{毎朝:"setiap pagi です。",毎週:"setiap minggu です。",毎月:"setiap bulan です。"},["belajar＝勉強する","malam＝夜"]),
+  q("READ-0004","読解","★★☆","Rina tidak suka kopi, tetapi suka teh.","リナが好きな飲み物は何ですか？",["コーヒー","お茶","水","牛乳"],"お茶","テー","teh＝お茶","tidak suka kopi なのでコーヒーは好きではありません。tetapi suka teh＝しかしお茶は好きです。",{コーヒー:"kopi です。",水:"air です。",牛乳:"susu です。"},["kopi＝コーヒー","tetapi＝しかし"]),
+  q("READ-0005","読解","★★☆","Ayah bekerja di rumah sakit.","父はどこで働いていますか？",["学校","病院","市場","駅"],"病院","ルマ サキット","rumah sakit＝病院","di rumah sakit は『病院で』です。",{学校:"sekolah です。",市場:"pasar です。",駅:"stasiun です。"},["ayah＝父","bekerja＝働く"]),
+  q("READ-0006","読解","★★★","Saya belum mandi karena air dingin.","私はなぜまだ入浴していませんか？",["水が冷たいから","眠いから","忙しいから","お腹が空いたから"],"水が冷たいから","アイル ディンギン","air dingin＝冷たい水","karena は理由を表します。",{眠いから:"mengantuk です。",忙しいから:"sibuk です。",お腹が空いたから:"lapar です。"},["belum＝まだ〜ない","mandi＝入浴する"])
