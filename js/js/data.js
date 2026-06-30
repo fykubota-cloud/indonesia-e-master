@@ -58,5 +58,4 @@ const questionBank = [
   q("MONTH-0001","月","★★☆","Agustus の意味は？","Agustus の意味を選びます。",["7月","8月","9月","10月"],"8月","アグストゥス","Agustus＝8月","月名問題です。",{"7月":"Juli です。","9月":"September です。","10月":"Oktober です。"},["Januari＝1月","Desember＝12月"]),
   q("NUM-0001","数字","★★☆","dua belas の意味は？","dua belas の意味を選びます。",["2","12","20","22"],"12","ドゥア ブラス","dua belas＝12","belas は11〜19で使います。",{"2":"dua です。","20":"dua puluh です。","22":"dua puluh dua です。"},["sebelas＝11","tiga belas＝13"]),
   q("READ-0001","読解","★★★","Ibu minum air karena haus.","母はなぜ水を飲みますか？",["お腹が空いたから","喉が渇いたから","眠いから","忙しいから"],"喉が渇いたから","ハウス","karena haus＝喉が渇いたから","karena は理由を表します。",{"お腹が空いたから":"lapar です。","眠いから":"mengantuk です。","忙しいから":"sibuk です。"},["air＝水","minum＝飲む","karena＝〜だから"])
-  q("READ-0001", ... )
-];
+ ];
