@@ -143,3 +143,23 @@ function updateProgress(){
     document.getElementById("progress-fill").style.width =
         percent + "%";
 }
+function startWeakQuiz(){
+    const mistakes = JSON.parse(localStorage.getItem("mistakes")) || [];
+
+    quizQuestions = questionBank.filter(q => mistakes.includes(q.id));
+
+    if(quizQuestions.length === 0){
+        showScreen("weak");
+        document.querySelector("#weak p").textContent =
+            "まだ間違えた問題がありません。まずは総合30問を解いてください。";
+        return;
+    }
+
+    questionNumber = 0;
+    score = 0;
+
+    quizQuestions.sort(() => Math.random() - 0.5);
+
+    showScreen("quiz30");
+    loadQuestion();
+}
