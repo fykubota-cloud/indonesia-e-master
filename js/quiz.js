@@ -69,7 +69,13 @@ function loadQuestion(){
     document.getElementById("question-category").innerHTML =
         `第${questionNumber}問 / ${Math.min(maxQuestions, quizQuestions.length)}　${currentQuestion.category}　${currentQuestion.level}`;
 
-    document.getElementById("question-text").innerHTML =
+    document.getElementById("document.getElementById("question-text").innerHTML = `
+    ${score} / ${total} 問正解<br>
+    正答率：${rate}%<br>
+    判定：${judge}<br><br>
+    苦手分野：${weakText}<br><br>
+    ${reviewHtml}
+`;").innerHTML =
         `${currentQuestion.question}<br><span class="translation">${currentQuestion.translation}</span>`;
 
     document.getElementById("feedback").innerHTML = "";
@@ -227,4 +233,27 @@ function updateProgress(){
 
     document.getElementById("progress-fill").style.width =
         percent + "%";
+function getReviewList(){
+    const wrongs = userAnswers.filter(a => !a.correct);
+
+    if(wrongs.length === 0){
+        return "間違えた問題はありません。";
+    }
+
+    let html = "<div class='review-list'><b>復習リスト</b><br>";
+
+    wrongs.forEach((item, index) => {
+        html += `
+            <div class="review-item">
+                ${index + 1}. ${item.category}<br>
+                問題：${item.question}<br>
+                あなたの回答：${item.choice}<br>
+                正解：${item.answer}
+            </div>
+        `;
+    });
+
+    html += "</div>";
+
+    return html;
 }
