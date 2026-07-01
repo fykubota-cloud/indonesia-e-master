@@ -58,7 +58,7 @@ const questionBank = [
   q("MONTH-0001","月","★★☆","Agustus の意味は？","Agustus の意味を選びます。",["7月","8月","9月","10月"],"8月","アグストゥス","Agustus＝8月","月名問題です。",{"7月":"Juli です。","9月":"September です。","10月":"Oktober です。"},["Januari＝1月","Desember＝12月"]),
   q("NUM-0001","数字","★★☆","dua belas の意味は？","dua belas の意味を選びます。",["2","12","20","22"],"12","ドゥア ブラス","dua belas＝12","belas は11〜19で使います。",{"2":"dua です。","20":"dua puluh です。","22":"dua puluh dua です。"},["sebelas＝11","tiga belas＝13"]),
   q("READ-0001","読解","★★★","Ibu minum air karena haus.","母はなぜ水を飲みますか？",["お腹が空いたから","喉が渇いたから","眠いから","忙しいから"],"喉が渇いたから","ハウス","karena haus＝喉が渇いたから","karena は理由を表します。",{"お腹が空いたから":"lapar です。","眠いから":"mengantuk です。","忙しいから":"sibuk です。"},["air＝水","minum＝飲む","karena＝〜だから"])
- ];
+ 
   q("DAY-0002","曜日","★★☆","Senin の意味は？","Senin の意味を選びます。",["月曜日","火曜日","水曜日","木曜日"],"月曜日","スニン","Senin＝月曜日","曜日問題はE級頻出です。",{火曜日:"Selasa です。",水曜日:"Rabu です。",木曜日:"Kamis です。"},["Selasa＝火曜日","Rabu＝水曜日"]),
   q("DAY-0003","曜日","★★☆","Selasa の意味は？","Selasa の意味を選びます。",["日曜日","火曜日","金曜日","土曜日"],"火曜日","スラサ","Selasa＝火曜日","曜日を覚える問題です。",{日曜日:"Minggu です。",金曜日:"Jumat です。",土曜日:"Sabtu です。"},["Senin＝月曜日","Rabu＝水曜日"]),
   q("DAY-0004","曜日","★★☆","Rabu の意味は？","Rabu の意味を選びます。",["水曜日","木曜日","金曜日","月曜日"],"水曜日","ラブ","Rabu＝水曜日","曜日問題です。",{木曜日:"Kamis です。",金曜日:"Jumat です。",月曜日:"Senin です。"},["Selasa＝火曜日","Kamis＝木曜日"]),
@@ -81,7 +81,7 @@ const questionBank = [
   q("VOC-0002","語彙","★★☆","apotik の意味は？","apotik の意味を選びます。",["病院","薬局","学校","銀行"],"薬局","アポティック","apotik＝薬局","薬を買う場所です。",{病院:"rumah sakit です。",学校:"sekolah です。",銀行:"bank です。"},["obat＝薬","dokter＝医者"]),
   q("VOC-0003","語彙","★★☆","rumah sakit の意味は？","rumah sakit の意味を選びます。",["学校","病院","市場","郵便局"],"病院","ルマ サキット","rumah sakit＝病院","sakit は病気・痛いという意味です。",{学校:"sekolah です。",市場:"pasar です。",郵便局:"kantor pos です。"},["sakit＝病気","dokter＝医者"]),
   q("VOC-0004","語彙","★★☆","pasar の意味は？","pasar の意味を選びます。",["市場","学校","公園","駅"],"市場","パサール","pasar＝市場","買い物に関係する場所です。",{学校:"sekolah です。",公園:"taman です。",駅:"stasiun です。"},["membeli＝買う","harga＝値段"]),
-  q("VOC-0005","語彙","★★☆","lapar の意味は？","lapar の意味を選びます。",["眠い","疲れた","空腹である","喉が渇いた"],"空腹である","ラパール","lapar＝空腹である","状態を表す語です。",{眠い:"mengantuk です。",疲れた:"capai です。",喉が渇いた:"haus です。"},["makan＝食べる","haus＝喉が渇いた"])
+  q("VOC-0005","語彙","★★☆","lapar の意味は？","lapar の意味を選びます。",["眠い","疲れた","空腹である","喉が渇いた"],"空腹である","ラパール","lapar＝空腹である","状態を表す語です。",{眠い:"mengantuk です。",疲れた:"capai です。",喉が渇いた:"haus です。"},["makan＝食べる","haus＝喉が渇いた"]),
 
   q("ME-0005","me動詞","★★★","kirim の正しい me-形は？","kirim の me形を選びます。",["mengirim","menirim","memirim","menyirim"],"mengirim","ムギリム","mengirim＝送る","kirim は k が消えて mengirim になります。",{menirim:"誤った形です。",memirim:"誤った形です。",menyirim:"誤った形です。"},["surat＝手紙","paket＝荷物"]),
   q("ME-0006","me動詞","★★☆","Saya ___ surat.","私は手紙を書きます。",["menulis","membaca","menyapu","mengirim"],"menulis","ムヌリス","menulis＝書く","surat を書くので menulis が正解です。",{membaca:"読むです。",menyapu:"掃くです。",mengirim:"送るです。"},["surat＝手紙","pensil＝鉛筆"]),
