@@ -222,3 +222,21 @@ function updateProgress() {
   document.getElementById("progress-fill").style.width =
     percent + "%";
 }
+function startCategoryQuiz(categoryName) {
+  quizMode = "practice";
+  questionNumber = 0;
+  score = 0;
+  userAnswers = [];
+
+  quizQuestions = questionBank.filter(q => q.category === categoryName);
+
+  if (quizQuestions.length === 0) {
+    alert(categoryName + " の問題がまだ登録されていません。");
+    return;
+  }
+
+  quizQuestions.sort(() => Math.random() - 0.5);
+
+  showScreen("quiz30");
+  loadQuestion();
+}
