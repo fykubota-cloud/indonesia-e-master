@@ -180,6 +180,7 @@ function showResult(){
     updateHomeStats();
 
     let weakText = getWeakCategories();
+    let reviewHtml = getReviewList();
 
     document.getElementById("question-category").textContent = "結果";
     document.getElementById("question-text").innerHTML = `
