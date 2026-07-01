@@ -238,4 +238,24 @@ footer{
     margin:10px 0;
     border-radius:10px;
     line-height:1.7;
+}.dict-card{
+    background:white;
+    border-radius:20px;
+    padding:18px;
+    margin:18px 0;
+    box-shadow:0 8px 22px rgba(3,110,183,.10);
+}
+
+.dict-card h3{
+    color:#036EB7;
+    margin-top:0;
+}
+
+.dict-card p{
+    text-align:left;
+}
+
+.dict-card ul{
+    padding-left:20px;
+    line-height:2;
 }
