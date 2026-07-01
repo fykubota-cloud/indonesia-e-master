@@ -2,14 +2,53 @@ let currentQuestion = null;
 let questionNumber = 0;
 let score = 0;
 let quizQuestions = [];
+let quizMode = "practice";
+let userAnswers = [];
 const maxQuestions = 30;
 
 function startQuiz() {
+    quizMode = "practice";
     questionNumber = 0;
-    updateProgress();
     score = 0;
+    userAnswers = [];
 
     quizQuestions = [...questionBank];
+    quizQuestions.sort(() => Math.random() - 0.5);
+
+    showScreen("quiz30");
+    loadQuestion();
+}
+
+function startMockExam() {
+    quizMode = "mock";
+    questionNumber = 0;
+    score = 0;
+    userAnswers = [];
+
+    quizQuestions = [...questionBank];
+    quizQuestions.sort(() => Math.random() - 0.5);
+
+    showScreen("quiz30");
+    loadQuestion();
+}
+
+function startWeakQuiz(){
+    quizMode = "practice";
+    const mistakes = JSON.parse(localStorage.getItem("mistakes")) || [];
+
+    quizQuestions = questionBank.filter(q => mistakes.includes(q.id));
+
+    if(quizQuestions.length === 0){
+        showScreen("weak");
+        document.querySelector("#weak p").textContent =
+            "まだ間違えた問題がありません。まずは総合30問を解いてください。";
+        return;
+    }
+
+    questionNumber = 0;
+    score = 0;
+    userAnswers = [];
+
     quizQuestions.sort(() => Math.random() - 0.5);
 
     showScreen("quiz30");
@@ -24,6 +63,8 @@ function loadQuestion(){
 
     currentQuestion = quizQuestions[questionNumber];
     questionNumber++;
+
+    updateProgress();
 
     document.getElementById("question-category").innerHTML =
         `第${questionNumber}問 / ${Math.min(maxQuestions, quizQuestions.length)}　${currentQuestion.category}　${currentQuestion.level}`;
@@ -53,18 +94,40 @@ function checkAnswer(choice){
 
     choiceButtons.forEach(button => {
         button.disabled = true;
-
-        if(button.textContent === currentQuestion.answer){
-            button.classList.add("correct-choice");
-        }
-
-        if(button.textContent === choice && choice !== currentQuestion.answer){
-            button.classList.add("wrong-choice");
-        }
     });
 
-    if(choice === currentQuestion.answer){
+    const isCorrect = choice === currentQuestion.answer;
+
+    userAnswers.push({
+        id: currentQuestion.id,
+        category: currentQuestion.category,
+        question: currentQuestion.question,
+        choice: choice,
+        answer: currentQuestion.answer,
+        correct: isCorrect
+    });
+
+    if(isCorrect){
         score++;
+    }else{
+        saveMistake(currentQuestion.id);
+    }
+
+    if(quizMode === "mock"){
+        feedback.innerHTML = `
+        <h3>回答しました</h3>
+        <p>模擬試験モードでは、最後にまとめて採点します。</p>
+        <button onclick="loadQuestion()">次の問題</button>
+        `;
+        return;
+    }
+
+    if(isCorrect){
+        choiceButtons.forEach(button => {
+            if(button.textContent === currentQuestion.answer){
+                button.classList.add("correct-choice");
+            }
+        });
 
         feedback.innerHTML = `
         <h3>⭕ 正解！</h3>
@@ -75,7 +138,14 @@ function checkAnswer(choice){
         <button onclick="loadQuestion()">次の問題</button>
         `;
     }else{
-        saveMistake(currentQuestion.id);
+        choiceButtons.forEach(button => {
+            if(button.textContent === currentQuestion.answer){
+                button.classList.add("correct-choice");
+            }
+            if(button.textContent === choice){
+                button.classList.add("wrong-choice");
+            }
+        });
 
         feedback.innerHTML = `
         <h3>❌ 不正解</h3>
@@ -105,34 +175,48 @@ function showResult(){
     const total = Math.min(maxQuestions, quizQuestions.length);
     const rate = Math.round((score / total) * 100);
     const judge = rate >= 60 ? "合格ライン到達" : "もう少し練習しましょう";
-    
-　　saveStats(score, total);
-　　updateHomeStats();
-    
+
+    saveStats(score, total);
+    updateHomeStats();
+
+    let weakText = getWeakCategories();
+
     document.getElementById("question-category").textContent = "結果";
     document.getElementById("question-text").innerHTML = `
         ${score} / ${total} 問正解<br>
         正答率：${rate}%<br>
-        判定：${judge}
+        判定：${judge}<br><br>
+        苦手分野：${weakText}
     `;
 
     document.getElementById("choices").innerHTML = "";
     document.getElementById("feedback").innerHTML = `
-        <button onclick="startQuiz()">もう一度挑戦</button>
+        <button onclick="startQuiz()">総合30問をもう一度</button>
+        <button onclick="startMockExam()">模擬試験をもう一度</button>
         <button onclick="showScreen('home')" class="secondary">ホームへ戻る</button>
     `;
 }
-function updateHomeStats(){
-    const stats = getStats();
-    const accuracy = getAccuracy();
 
-    const statNumbers = document.querySelectorAll(".stat-number");
+function getWeakCategories(){
+    const wrongs = userAnswers.filter(a => !a.correct);
 
-    if(statNumbers.length >= 2){
-        statNumbers[0].textContent = accuracy + "%";
-        statNumbers[1].textContent = stats.totalAnswered;
+    if(wrongs.length === 0){
+        return "なし";
     }
+
+    const counts = {};
+
+    wrongs.forEach(item => {
+        counts[item.category] = (counts[item.category] || 0) + 1;
+    });
+
+    return Object.entries(counts)
+        .sort((a,b) => b[1] - a[1])
+        .map(item => item[0])
+        .slice(0,3)
+        .join("・");
 }
+
 function updateProgress(){
     const total = Math.min(maxQuestions, quizQuestions.length);
     const percent = Math.round((questionNumber / total) * 100);
@@ -142,24 +226,4 @@ function updateProgress(){
 
     document.getElementById("progress-fill").style.width =
         percent + "%";
-}
-function startWeakQuiz(){
-    const mistakes = JSON.parse(localStorage.getItem("mistakes")) || [];
-
-    quizQuestions = questionBank.filter(q => mistakes.includes(q.id));
-
-    if(quizQuestions.length === 0){
-        showScreen("weak");
-        document.querySelector("#weak p").textContent =
-            "まだ間違えた問題がありません。まずは総合30問を解いてください。";
-        return;
-    }
-
-    questionNumber = 0;
-    score = 0;
-
-    quizQuestions.sort(() => Math.random() - 0.5);
-
-    showScreen("quiz30");
-    loadQuestion();
 }
