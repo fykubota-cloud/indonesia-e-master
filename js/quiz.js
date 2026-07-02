@@ -5,9 +5,11 @@ let quizQuestions = [];
 let quizMode = "practice";
 let userAnswers = [];
 const maxQuestions = 30;
+let targetQuestions = 30;
 
 function startQuiz() {
   quizMode = "practice";
+  targetQuestions = 30;
   questionNumber = 0;
   score = 0;
   userAnswers = [];
