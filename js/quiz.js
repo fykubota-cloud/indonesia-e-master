@@ -4,7 +4,7 @@ let score = 0;
 let quizQuestions = [];
 let quizMode = "practice";
 let userAnswers = [];
-const maxQuestions = 30;
+const targetQuestions = 30;
 let targetQuestions = 30;
 
 function startQuiz() {
@@ -147,7 +147,7 @@ function saveMistake(questionId) {
 }
 
 function showResult() {
-  const total = Math.min(maxQuestions, quizQuestions.length);
+  const total = Math.min(targetQuestions, quizQuestions.length);
   const rate = Math.round((score / total) * 100);
   const judge = rate >= 60 ? "合格ライン到達" : "もう少し練習しましょう";
 
@@ -216,7 +216,7 @@ function getReviewList() {
 }
 
 function updateProgress() {
-  const total = Math.min(maxQuestions, quizQuestions.length);
+  const total = Math.min(targetQuestions, quizQuestions.length);
   const percent = Math.round((questionNumber / total) * 100);
 
   document.getElementById("progress-text").textContent =
