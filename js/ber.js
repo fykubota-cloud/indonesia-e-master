@@ -1,3 +1,37 @@
 questionBank.push(
+  q("BER-A001","ber動詞","★★☆","bekerja の意味は？","bekerja の意味を選びます。",["働く","歩く","遊ぶ","会う"],"働く","ブクルジャ","bekerja＝働く","kerja は仕事、bekerja は働くです。",{"歩く":"berjalan です。","遊ぶ":"bermain です。","会う":"bertemu です。"},["kerja＝仕事","kantor＝会社"]),
+  q("BER-A002","ber動詞","★★☆","bermain の意味は？","bermain の意味を選びます。",["遊ぶ","働く","走る","話す"],"遊ぶ","ブルマイン","bermain＝遊ぶ・プレーする","子どもの遊びやスポーツで使います。",{"働く":"bekerja です。","走る":"berlari です。","話す":"berbicara です。"},["main＝遊ぶ","taman＝公園"]),
+  q("BER-A003","ber動詞","★★☆","berjalan の意味は？","berjalan の意味を選びます。",["歩く","会う","働く","買う"],"歩く","ブルジャラン","berjalan＝歩く","jalan は道・歩く、berjalan は歩くです。",{"会う":"bertemu です。","働く":"bekerja です。","買う":"membeli です。"},["jalan＝道","kaki＝足"]),
+  q("BER-A004","ber動詞","★★☆","berlari の意味は？","berlari の意味を選びます。",["走る","歩く","遊ぶ","読む"],"走る","ブルラリ","berlari＝走る","lari は走る、berlari も走るです。",{"歩く":"berjalan です。","遊ぶ":"bermain です。","読む":"membaca です。"},["lari＝走る","cepat＝速い"]),
+  q("BER-A005","ber動詞","★★☆","bertemu の意味は？","bertemu の意味を選びます。",["会う","働く","送る","洗う"],"会う","ブルトゥム","bertemu＝会う","人と会う時に使います。",{"働く":"bekerja です。","送る":"mengirim です。","洗う":"mencuci です。"},["teman＝友だち","orang＝人"]),
 
+  q("BER-A006","ber動詞","★★☆","Kami ___ di kantor.","私たちは会社で働きます。",["bekerja","bermain","berlari","bertemu"],"bekerja","ブクルジャ","bekerja＝働く","di kantor なので bekerja が自然です。",{"bermain":"遊ぶです。","berlari":"走るです。","bertemu":"会うです。"},["kantor＝会社","kami＝私たち"]),
+  q("BER-A007","ber動詞","★★☆","Anak-anak ___ di taman.","子どもたちは公園で遊びます。",["bermain","bekerja","berjalan","bertemu"],"bermain","ブルマイン","bermain＝遊ぶ","公園で遊ぶので bermain です。",{"bekerja":"働くです。","berjalan":"歩くです。","bertemu":"会うです。"},["anak-anak＝子どもたち","taman＝公園"]),
+  q("BER-A008","ber動詞","★★☆","Dia ___ ke sekolah.","彼・彼女は学校へ歩いて行きます。",["berjalan","bermain","bekerja","bertemu"],"berjalan","ブルジャラン","berjalan＝歩く","ke sekolah と合わせて『学校へ歩く』です。",{"bermain":"遊ぶです。","bekerja":"働くです。","bertemu":"会うです。"},["sekolah＝学校","ke＝〜へ"]),
+  q("BER-A009","ber動詞","★★☆","Saya ___ dengan teman.","私は友だちと会います。",["bertemu","berlari","bekerja","berjalan"],"bertemu","ブルトゥム","bertemu＝会う","dengan teman＝友だちと、なので bertemu です。",{"berlari":"走るです。","bekerja":"働くです。","berjalan":"歩くです。"},["dengan＝〜と","teman＝友だち"]),
+  q("BER-A010","ber動詞","★★☆","Mereka ___ sepak bola.","彼らはサッカーをします。",["bermain","bekerja","bertemu","berjalan"],"bermain","ブルマイン","bermain＝遊ぶ・プレーする","スポーツをする時も bermain を使います。",{"bekerja":"働くです。","bertemu":"会うです。","berjalan":"歩くです。"},["sepak bola＝サッカー","mereka＝彼ら"]),
+
+  q("BER-A011","ber動詞","★★☆","berbicara の意味は？","berbicara の意味を選びます。",["話す","走る","働く","掃く"],"話す","ブルビチャラ","berbicara＝話す","会話・話す動作を表します。",{"走る":"berlari です。","働く":"bekerja です。","掃く":"menyapu です。"},["bicara＝話す","bahasa＝言語"]),
+  q("BER-A012","ber動詞","★★☆","belajar の意味は？","belajar の意味を選びます。",["勉強する","働く","遊ぶ","買う"],"勉強する","ブラジャール","belajar＝勉強する","ber-形ではありませんが、E級頻出の重要動詞です。",{"働く":"bekerja です。","遊ぶ":"bermain です。","買う":"membeli です。"},["belajar bahasa Indonesia＝インドネシア語を勉強する"]),
+  q("BER-A013","ber動詞","★★☆","berenang の意味は？","berenang の意味を選びます。",["泳ぐ","走る","歩く","寝る"],"泳ぐ","ブルナン","berenang＝泳ぐ","水泳に関する動詞です。",{"走る":"berlari です。","歩く":"berjalan です。","寝る":"tidur です。"},["kolam renang＝プール"]),
+  q("BER-A014","ber動詞","★★☆","bersepeda の意味は？","bersepeda の意味を選びます。",["自転車に乗る","歩く","働く","読む"],"自転車に乗る","ブルスプダ","bersepeda＝自転車に乗る","sepeda は自転車です。",{"歩く":"berjalan です。","働く":"bekerja です。","読む":"membaca です。"},["sepeda＝自転車"]),
+  q("BER-A015","ber動詞","★★☆","berdoa の意味は？","berdoa の意味を選びます。",["祈る","遊ぶ","洗う","買う"],"祈る","ブルドア","berdoa＝祈る","祈る・お祈りするという意味です。",{"遊ぶ":"bermain です。","洗う":"mencuci です。","買う":"membeli です。"},["doa＝祈り"]),
+
+  q("BER-A016","ber動詞","★★☆","Saya ___ bahasa Indonesia.","私はインドネシア語を勉強します。",["belajar","bekerja","bermain","berlari"],"belajar","ブラジャール","belajar＝勉強する","bahasa Indonesia と一緒に使います。",{"bekerja":"働くです。","bermain":"遊ぶです。","berlari":"走るです。"},["bahasa Indonesia＝インドネシア語"]),
+  q("BER-A017","ber動詞","★★☆","Dia ___ dengan ibu.","彼・彼女は母と話します。",["berbicara","berlari","bekerja","bermain"],"berbicara","ブルビチャラ","berbicara＝話す","dengan ibu＝母と、なので berbicara です。",{"berlari":"走るです。","bekerja":"働くです。","bermain":"遊ぶです。"},["ibu＝母","dengan＝〜と"]),
+  q("BER-A018","ber動詞","★★☆","Anak itu ___ di kolam.","その子はプールで泳ぎます。",["berenang","berjalan","bekerja","bertemu"],"berenang","ブルナン","berenang＝泳ぐ","kolam は池・プールです。",{"berjalan":"歩くです。","bekerja":"働くです。","bertemu":"会うです。"},["kolam＝池・プール","anak＝子ども"]),
+  q("BER-A019","ber動詞","★★☆","Saya ___ setiap pagi.","私は毎朝走ります。",["berlari","bertemu","bekerja","bermain"],"berlari","ブルラリ","berlari＝走る","毎朝走るので berlari です。",{"bertemu":"会うです。","bekerja":"働くです。","bermain":"遊ぶです。"},["setiap pagi＝毎朝"]),
+  q("BER-A020","ber動詞","★★☆","Dia ___ ke kantor dengan sepeda.","彼・彼女は自転車で会社へ行きます。",["bersepeda","berenang","berdoa","bertemu"],"bersepeda","ブルスプダ","bersepeda＝自転車に乗る","sepeda があるので bersepeda が自然です。",{"berenang":"泳ぐです。","berdoa":"祈るです。","bertemu":"会うです。"},["sepeda＝自転車","kantor＝会社"]),
+
+  q("BER-A021","ber動詞","★★★","ber-動詞に近い特徴はどれ？","ber動詞の特徴を選びます。",["状態・活動を表すことが多い","必ず物を目的語に取る","名詞だけを否定する","禁止を表す"],"状態・活動を表すことが多い","ブル","ber-＝活動・状態を作る接頭辞","ber動詞は働く・遊ぶ・歩くなど状態や活動を表すことが多いです。",{"必ず物を目的語に取る":"me動詞に多い特徴です。","名詞だけを否定する":"bukan の説明です。","禁止を表す":"jangan の説明です。"},["bekerja＝働く","bermain＝遊ぶ"]),
+  q("BER-A022","ber動詞","★★★","bekerja はどれに近い？","bekerja の使い方を選びます。",["di kantor","buku","nasi","surat"],"di kantor","ディ カントール","bekerja di kantor＝会社で働く","bekerja は場所と一緒に使いやすいです。",{buku:"読む対象です。",nasi:"食べ物です。",surat:"手紙です。"},["kantor＝会社","di＝〜で"]),
+  q("BER-A023","ber動詞","★★★","bermain はどれに近い？","bermain の使い方を選びます。",["sepak bola","surat","pakaian","obat"],"sepak bola","スパッ ボラ","bermain sepak bola＝サッカーをする","bermain は遊ぶ・スポーツをする時に使います。",{surat:"手紙です。",pakaian:"服です。",obat:"薬です。"},["sepak bola＝サッカー","olahraga＝スポーツ"]),
+  q("BER-A024","ber動詞","★★★","bertemu はどれに近い？","bertemu の使い方を選びます。",["dengan teman","di atas meja","nasi goreng","air dingin"],"dengan teman","ドゥンガン トゥマン","bertemu dengan teman＝友だちと会う","会う相手は dengan で表します。",{"di atas meja":"机の上です。","nasi goreng":"ナシゴレンです。","air dingin":"冷たい水です。"},["dengan＝〜と","teman＝友だち"]),
+  q("BER-A025","ber動詞","★★★","berjalan はどれに近い？","berjalan の使い方を選びます。",["ke sekolah","buku","surat","pakaian"],"ke sekolah","ク スコラ","berjalan ke sekolah＝学校へ歩く","移動先は ke で表します。",{buku:"本です。",surat:"手紙です。",pakaian:"服です。"},["ke＝〜へ","sekolah＝学校"]),
+
+  q("BER-A026","ber動詞","★★☆","Kami ___ di ruang kelas.","私たちは教室で勉強します。",["belajar","bekerja","bermain","bertemu"],"belajar","ブラジャール","belajar＝勉強する","ruang kelas は教室なので belajar が自然です。",{"bekerja":"働くです。","bermain":"遊ぶです。","bertemu":"会うです。"},["ruang kelas＝教室"]),
+  q("BER-A027","ber動詞","★★☆","Mereka ___ di lapangan.","彼らは運動場で遊びます。",["bermain","belajar","bertemu","bekerja"],"bermain","ブルマイン","bermain＝遊ぶ","lapangan は運動場・広場です。",{"belajar":"勉強するです。","bertemu":"会うです。","bekerja":"働くです。"},["lapangan＝運動場"]),
+  q("BER-A028","ber動詞","★★☆","Saya ___ setiap hari.","私は毎日働きます。",["bekerja","bermain","bertemu","berenang"],"bekerja","ブクルジャ","bekerja＝働く","毎日働くので bekerja です。",{"bermain":"遊ぶです。","bertemu":"会うです。","berenang":"泳ぐです。"},["setiap hari＝毎日"]),
+  q("BER-A029","ber動詞","★★☆","Dia ___ di taman setiap sore.","彼・彼女は毎夕、公園を歩きます。",["berjalan","bekerja","berbicara","bertemu"],"berjalan","ブルジャラン","berjalan＝歩く","公園で歩くので berjalan が自然です。",{"bekerja":"働くです。","berbicara":"話すです。","bertemu":"会うです。"},["taman＝公園","sore＝夕方"]),
+  q("BER-A030","ber動詞","★★☆","Saya ___ sebelum makan.","私は食事の前に祈ります。",["berdoa","bermain","berlari","bekerja"],"berdoa","ブルドア","berdoa＝祈る","食事前のお祈りなどに使えます。",{"bermain":"遊ぶです。","berlari":"走るです。","bekerja":"働くです。"},["sebelum＝〜の前に","makan＝食べる"])
 );
