@@ -20,6 +20,7 @@ function startQuiz() {
 
 function startMockExam() {
   quizMode = "mock";
+  targetQuestions = 50;
   questionNumber = 0;
   score = 0;
   userAnswers = [];
