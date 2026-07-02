@@ -4,7 +4,6 @@ let score = 0;
 let quizQuestions = [];
 let quizMode = "practice";
 let userAnswers = [];
-const targetQuestions = 30;
 let targetQuestions = 30;
 
 function startQuiz() {
