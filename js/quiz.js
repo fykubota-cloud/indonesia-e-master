@@ -50,7 +50,7 @@ function startWeakQuiz() {
 }
 
 function loadQuestion() {
-  if (questionNumber >= maxQuestions || questionNumber >= quizQuestions.length) {
+  if (questionNumber >= targetQuestions || questionNumber >= quizQuestions.length) {
     showResult();
     return;
   }
@@ -61,7 +61,7 @@ function loadQuestion() {
   updateProgress();
 
   document.getElementById("question-category").innerHTML =
-    `第${questionNumber}問 / ${Math.min(maxQuestions, quizQuestions.length)}　${currentQuestion.category}　${currentQuestion.level}`;
+    `第${questionNumber}問 / ${Math.min(targetQuestions, quizQuestions.length)}　${currentQuestion.category}　${currentQuestion.level}`;
 
   document.getElementById("question-text").innerHTML =
     `${currentQuestion.question}<br><span class="translation">${currentQuestion.translation}</span>`;
