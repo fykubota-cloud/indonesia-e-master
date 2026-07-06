@@ -13,6 +13,9 @@
   <section id="home">
     <h1>🇮🇩 Indonesia E級 Master</h1>
 
+　<button onclick="startQuiz()">問題を始める</button>
+  <button onclick="showDictionary()">📖 単語辞典</button>
+</section>
     <p class="sub">インドネシア語検定E級 合格対策システム</p>
 
     <div class="dashboard">
@@ -177,6 +180,21 @@
 <script src="js/storage.js"></script>
 <script src="js/quiz.js"></script>
 <script src="js/extra400.js"></script>
+<script src="js/dictionary.js"></script>
 <script src="js/app.js"></script>
 </body>
+<section id="dictionary" style="display:none;">
+  <h2>📖 単語辞典</h2>
+
+  <input 
+    type="text" 
+    id="dictionarySearch" 
+    placeholder="単語・意味・カテゴリで検索"
+    oninput="renderDictionary()"
+  >
+
+  <div id="dictionaryList"></div>
+
+  <button onclick="showScreen('home')">ホームに戻る</button>
+</section>
 </html>
