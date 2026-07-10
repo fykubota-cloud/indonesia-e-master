@@ -10,63 +10,241 @@
 
 <div class="container">
 
-  <section id="home">
-    <h1>🇮🇩 Indonesia E級 Master</h1>
+<section id="home" class="home-screen">
 
-　 <button onclick="startQuiz()">30問クイズ</button>
-  <button onclick="showDictionary()">📖 単語辞典</button>
-</section>
-    <p class="sub">インドネシア語検定E級 合格対策システム</p>
+  <!-- ヘッダー -->
+  <div class="home-header">
+    <div class="app-icon">🇮🇩</div>
 
-    <div class="dashboard">
-      <div class="dashboard-title">📊 学習状況</div>
-
-      <div class="stats">
-        <div class="stat">
-          <span class="stat-number">0%</span>
-          <div class="stat-label">正答率</div>
-        </div>
-
-        <div class="stat">
-          <span class="stat-number">0</span>
-          <div class="stat-label">解いた問題</div>
-        </div>
-
-        <div class="stat">
-          <span class="stat-number">0</span>
-          <div class="stat-label">連続正解</div>
-        </div>
-
-        <div class="stat">
-          <span class="stat-number">E級</span>
-          <div class="stat-label">現在レベル</div>
-        </div>
-      </div>
+    <div>
+      <h1>Indonesia E級 Master</h1>
+      <p class="home-subtitle">
+        語彙・読解・リスニングを強化する本番対策アプリ
+      </p>
     </div>
 
-    <div class="menu-title">学習メニュー</div>
+    <span class="version-badge">Version 2.0</span>
+  </div>
 
-    <button onclick="startQuiz()">📖 総合30問</button>
-    <button onclick="startCategoryQuiz('否定')">🔴 否定だけ</button>
-<button onclick="startCategoryQuiz('me動詞')">🔵 me動詞だけ</button>
-<button onclick="startCategoryQuiz('ber動詞')">🟢 ber動詞だけ</button>
-<button onclick="startCategoryQuiz('助数詞')">🟠 助数詞だけ</button>
-<button onclick="startCategoryQuiz('頻度')">🟣 頻度だけ</button>
-<button onclick="startCategoryQuiz('場所')">🟤 場所だけ</button>
-<button onclick="startCategoryQuiz('曜日')">📅 曜日だけ</button>
-<button onclick="startCategoryQuiz('月')">📆 月だけ</button>
-<button onclick="startCategoryQuiz('数字')">🔢 数字だけ</button>
-    
-    <button onclick="showScreen('quiz50')">📝 総合50問</button>
-    <button onclick="startMockExam()">🎯 模擬試験</button>
-    <button onclick="startWeakQuiz()">💪 苦手克服</button>
-    <button onclick="showScreen('words')">📚 単語帳</button>
-    <button onclick="showScreen('dictionary')">🔤 me・ber辞典</button>
-    <button onclick="showScreen('stats')">📊 学習統計</button>
-    <button onclick="showScreen('settings')">⚙️ 設定</button>
 
-    <footer>Version 0.3</footer>
-  </section>
+  <!-- 今日の学習 -->
+  <div class="today-panel">
+    <div class="panel-heading">
+      <div>
+        <span class="panel-icon">🔥</span>
+        <span>今日の学習</span>
+      </div>
+
+      <span class="today-label">継続が力になります</span>
+    </div>
+
+    <div class="today-main">
+      <div>
+        <p class="today-message">今日のおすすめ</p>
+        <h2>単語20語＋総合30問</h2>
+        <p class="today-description">
+          語彙を確認してから問題演習に進みましょう。
+        </p>
+      </div>
+
+      <button class="primary-action" onclick="startQuiz()">
+        学習を始める
+      </button>
+    </div>
+  </div>
+
+
+  <!-- 学習状況 -->
+  <div class="section-heading">
+    <h2>学習状況</h2>
+  </div>
+
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <div class="stat-icon">🎯</div>
+      <span class="stat-number">0%</span>
+      <span class="stat-label">正答率</span>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">✏️</div>
+      <span class="stat-number">0</span>
+      <span class="stat-label">解いた問題</span>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🔥</div>
+      <span class="stat-number">0</span>
+      <span class="stat-label">連続正解</span>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🏅</div>
+      <span class="stat-number">E級</span>
+      <span class="stat-label">現在レベル</span>
+    </div>
+
+  </div>
+
+
+  <!-- メイン学習メニュー -->
+  <div class="section-heading">
+    <h2>学習メニュー</h2>
+    <p>目的に合わせて選んでください</p>
+  </div>
+
+  <div class="main-menu-grid">
+
+    <button class="menu-card" onclick="startQuiz()">
+      <span class="menu-card-icon">📝</span>
+      <span class="menu-card-content">
+        <strong>問題演習</strong>
+        <small>総合30問に挑戦</small>
+      </span>
+      <span class="menu-arrow">›</span>
+    </button>
+
+    <button class="menu-card" onclick="showScreen('words')">
+      <span class="menu-card-icon">📚</span>
+      <span class="menu-card-content">
+        <strong>単語帳</strong>
+        <small>覚えるための語彙学習</small>
+      </span>
+      <span class="menu-arrow">›</span>
+    </button>
+
+    <button class="menu-card" onclick="showDictionary()">
+      <span class="menu-card-icon">🔎</span>
+      <span class="menu-card-content">
+        <strong>単語辞典</strong>
+        <small>単語・意味・例文を検索</small>
+      </span>
+      <span class="menu-arrow">›</span>
+    </button>
+
+    <button class="menu-card" onclick="startWeakQuiz()">
+      <span class="menu-card-icon">💪</span>
+      <span class="menu-card-content">
+        <strong>苦手克服</strong>
+        <small>間違えた問題を復習</small>
+      </span>
+      <span class="menu-arrow">›</span>
+    </button>
+
+    <button class="menu-card coming-soon" disabled>
+      <span class="menu-card-icon">📖</span>
+      <span class="menu-card-content">
+        <strong>長文読解</strong>
+        <small>長文穴埋め・内容理解</small>
+      </span>
+      <span class="coming-label">準備中</span>
+    </button>
+
+    <button class="menu-card coming-soon" disabled>
+      <span class="menu-card-icon">🎧</span>
+      <span class="menu-card-content">
+        <strong>リスニング</strong>
+        <small>音声を聞いて4択回答</small>
+      </span>
+      <span class="coming-label">準備中</span>
+    </button>
+
+    <button class="menu-card" onclick="startMockExam()">
+      <span class="menu-card-icon">🏁</span>
+      <span class="menu-card-content">
+        <strong>模擬試験</strong>
+        <small>本番形式で実力確認</small>
+      </span>
+      <span class="menu-arrow">›</span>
+    </button>
+
+    <button class="menu-card" onclick="showScreen('stats')">
+      <span class="menu-card-icon">📊</span>
+      <span class="menu-card-content">
+        <strong>学習分析</strong>
+        <small>正答率・苦手分野を確認</small>
+      </span>
+      <span class="menu-arrow">›</span>
+    </button>
+
+  </div>
+
+
+  <!-- カテゴリー別 -->
+  <div class="section-heading">
+    <h2>カテゴリー別演習</h2>
+    <p>苦手な分野だけを集中練習</p>
+  </div>
+
+  <div class="category-grid">
+
+    <button onclick="startCategoryQuiz('否定')">
+      <span>🔴</span>
+      否定
+    </button>
+
+    <button onclick="startCategoryQuiz('me動詞')">
+      <span>🔵</span>
+      me動詞
+    </button>
+
+    <button onclick="startCategoryQuiz('ber動詞')">
+      <span>🟢</span>
+      ber動詞
+    </button>
+
+    <button onclick="startCategoryQuiz('助数詞')">
+      <span>🟠</span>
+      助数詞
+    </button>
+
+    <button onclick="startCategoryQuiz('頻度')">
+      <span>🟣</span>
+      頻度
+    </button>
+
+    <button onclick="startCategoryQuiz('場所')">
+      <span>🟤</span>
+      場所
+    </button>
+
+    <button onclick="startCategoryQuiz('曜日')">
+      <span>📅</span>
+      曜日
+    </button>
+
+    <button onclick="startCategoryQuiz('月')">
+      <span>📆</span>
+      月
+    </button>
+
+    <button onclick="startCategoryQuiz('数字')">
+      <span>🔢</span>
+      数字
+    </button>
+
+  </div>
+
+
+  <!-- サブメニュー -->
+  <div class="sub-menu">
+
+    <button onclick="showScreen('settings')">
+      ⚙️ 設定
+    </button>
+
+    <button onclick="showScreen('dictionary')">
+      🔤 me・ber辞典
+    </button>
+
+  </div>
+
+  <footer class="app-footer">
+    Indonesia E級 Master Version 2.0
+  </footer>
+
+</section>
 
   <section id="quiz30" class="screen">
     <h2>📖 総合30問</h2>
