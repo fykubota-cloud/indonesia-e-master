@@ -242,3 +242,10 @@ function startCategoryQuiz(categoryName) {
   showScreen("quiz30");
   loadQuestion();
 }
+window.startQuiz = startQuiz;
+window.startMockExam = startMockExam;
+window.startWeakQuiz = startWeakQuiz;
+window.startCategoryQuiz = startCategoryQuiz;
+window.loadQuestion = loadQuestion;
+window.checkAnswer = checkAnswer;
+window.showResult = showResult;
