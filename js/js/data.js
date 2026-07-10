@@ -137,3 +137,5 @@ const questionBank = [
   q("READ-0007","読解","★★★","Tono pergi ke apotik untuk membeli obat.","トノは何を買うために薬局へ行きますか？",["薬","本","野菜","服"],"薬","オバット","obat＝薬","membeli obat は『薬を買う』です。",{"本":"buku です。","野菜":"sayur です。","服":"pakaian です。"},["apotik＝薬局","membeli＝買う"]),
   q("READ-0008","読解","★★★","Saya tidak pergi karena hujan.","私はなぜ行きませんか？",["雨だから","暑いから","眠いから","忙しいから"],"雨だから","フジャン","hujan＝雨","karena hujan は『雨だから』です。",{"暑いから":"panas です。","眠いから":"mengantuk です。","忙しいから":"sibuk です。"},["tidak pergi＝行かない","karena＝〜だから"])
 ];
+
+window.questionBank = questionBank;
