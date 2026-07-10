@@ -99,21 +99,41 @@ function showDictionary(){
 function renderDictionary(){
   const list = document.getElementById("dictionaryList");
   const searchInput = document.getElementById("dictionarySearch");
+  const count = document.getElementById("dictionaryCount");
 
-  if(!list) return;
+  if(!list){
+    console.error("dictionaryList が index.html にありません。");
+    return;
+  }
 
-  const keyword = searchInput ? searchInput.value.toLowerCase() : "";
+  const keyword = searchInput
+    ? searchInput.value.trim().toLowerCase()
+    : "";
 
   const filtered = window.dictionaryData.filter(item => {
     return (
       item.word.toLowerCase().includes(keyword) ||
-      item.meaning.includes(keyword) ||
-      item.category.includes(keyword) ||
-      item.type.includes(keyword)
+      item.root.toLowerCase().includes(keyword) ||
+      item.meaning.toLowerCase().includes(keyword) ||
+      item.category.toLowerCase().includes(keyword) ||
+      item.type.toLowerCase().includes(keyword)
     );
   });
 
+  if(count){
+    count.textContent = `${filtered.length}語を表示しています`;
+  }
+
   list.innerHTML = "";
+
+  if(filtered.length === 0){
+    list.innerHTML = `
+      <div class="dictionary-card">
+        <p>該当する単語が見つかりませんでした。</p>
+      </div>
+    `;
+    return;
+  }
 
   filtered.forEach(item => {
     const card = document.createElement("div");
@@ -132,3 +152,6 @@ function renderDictionary(){
     list.appendChild(card);
   });
 }
+
+window.showDictionary = showDictionary;
+window.renderDictionary = renderDictionary;
