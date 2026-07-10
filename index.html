@@ -290,32 +290,30 @@
     <button onclick="showScreen('home')">ホームへ戻る</button>
   </section>
 
- <section id="dictionary" class="screen">
+<section id="dictionary" class="screen" style="display:none;">
   <h2>📖 単語辞典</h2>
 
-  <input 
-    type="text" 
-    id="dictionarySearch" 
-    placeholder="単語・意味・カテゴリで検索"
-    oninput="renderDictionary()"
-  >
+  <div class="dictionary-search-area">
+    <input
+      type="text"
+      id="dictionarySearch"
+      placeholder="インドネシア語・日本語・カテゴリで検索"
+      oninput="renderDictionary()"
+    >
+  </div>
+
+  <p id="dictionaryCount"></p>
 
   <div id="dictionaryList"></div>
 
-  <button onclick="showScreen('home')" class="secondary">ホームへ戻る</button>
+  <button
+    type="button"
+    onclick="showScreen('home')"
+    class="secondary"
+  >
+    ホームへ戻る
+  </button>
 </section>
-
-  <section id="stats" class="screen">
-    <h2>📊 学習統計</h2>
-    <p>正答率・苦手分野を表示します。</p>
-    <button onclick="showScreen('home')">ホームへ戻る</button>
-  </section>
-
-  <section id="settings" class="screen">
-    <h2>⚙️ 設定</h2>
-    <p>出題数やモード設定をここで変更できるようにします。</p>
-    <button onclick="showScreen('home')">ホームへ戻る</button>
-  </section>
 
 </div>
 
