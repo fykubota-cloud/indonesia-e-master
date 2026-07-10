@@ -7,43 +7,82 @@ let userAnswers = [];
 let targetQuestions = 30;
 
 function startQuiz() {
+  if (!window.questionBank || window.questionBank.length === 0) {
+    alert("問題データを読み込めませんでした。data.jsを確認してください。");
+    console.error("questionBank がありません。");
+    return;
+  }
+
   quizMode = "practice";
   targetQuestions = 30;
   questionNumber = 0;
   score = 0;
   userAnswers = [];
-  quizQuestions = [...questionBank].sort(() => Math.random() - 0.5);
+
+  quizQuestions = [...window.questionBank]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, targetQuestions);
+
   showScreen("quiz30");
   loadQuestion();
 }
 
 function startMockExam() {
+  if (!window.questionBank || window.questionBank.length === 0) {
+    alert("問題データを読み込めませんでした。data.jsを確認してください。");
+    return;
+  }
+
   quizMode = "mock";
   targetQuestions = 50;
   questionNumber = 0;
   score = 0;
   userAnswers = [];
-  quizQuestions = [...questionBank].sort(() => Math.random() - 0.5);
+
+  quizQuestions = [...window.questionBank]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, targetQuestions);
+
   showScreen("quiz30");
   loadQuestion();
 }
 
 function startWeakQuiz() {
+  if (!window.questionBank || window.questionBank.length === 0) {
+    alert("問題データを読み込めませんでした。");
+    return;
+  }
+
   quizMode = "practice";
-  const mistakes = JSON.parse(localStorage.getItem("mistakes")) || [];
-  quizQuestions = questionBank.filter(q => mistakes.includes(q.id));
+
+  const mistakes =
+    JSON.parse(localStorage.getItem("mistakes")) || [];
+
+  quizQuestions = window.questionBank.filter(
+    question => mistakes.includes(question.id)
+  );
 
   if (quizQuestions.length === 0) {
     showScreen("weak");
-    document.querySelector("#weak p").textContent =
-      "まだ間違えた問題がありません。まずは総合30問を解いてください。";
+
+    const message = document.querySelector("#weak p");
+
+    if (message) {
+      message.textContent =
+        "まだ間違えた問題がありません。まずは総合30問を解いてください。";
+    }
+
     return;
   }
 
   questionNumber = 0;
   score = 0;
   userAnswers = [];
+
   quizQuestions.sort(() => Math.random() - 0.5);
+
+  targetQuestions = Math.min(30, quizQuestions.length);
+
   showScreen("quiz30");
   loadQuestion();
 }
@@ -225,12 +264,19 @@ function updateProgress() {
     percent + "%";
 }
 function startCategoryQuiz(categoryName) {
+  if (!window.questionBank || window.questionBank.length === 0) {
+    alert("問題データを読み込めませんでした。");
+    return;
+  }
+
   quizMode = "practice";
   questionNumber = 0;
   score = 0;
   userAnswers = [];
 
-  quizQuestions = questionBank.filter(q => q.category === categoryName);
+  quizQuestions = window.questionBank.filter(
+    question => question.category === categoryName
+  );
 
   if (quizQuestions.length === 0) {
     alert(categoryName + " の問題がまだ登録されていません。");
@@ -238,6 +284,8 @@ function startCategoryQuiz(categoryName) {
   }
 
   quizQuestions.sort(() => Math.random() - 0.5);
+
+  targetQuestions = Math.min(30, quizQuestions.length);
 
   showScreen("quiz30");
   loadQuestion();
