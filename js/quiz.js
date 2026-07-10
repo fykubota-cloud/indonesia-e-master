@@ -7,7 +7,7 @@ let userAnswers = [];
 let targetQuestions = 30;
 
 function startQuiz() {
-  if (!window.questionBank || window.questionBank.length === 0) {
+  if (!questionBank || questionBank.length === 0) {
     alert("問題データを読み込めませんでした。data.jsを確認してください。");
     console.error("questionBank がありません。");
     return;
@@ -19,7 +19,7 @@ function startQuiz() {
   score = 0;
   userAnswers = [];
 
-  quizQuestions = [...window.questionBank]
+  quizQuestions = [...questionBank]
     .sort(() => Math.random() - 0.5)
     .slice(0, targetQuestions);
 
@@ -28,7 +28,7 @@ function startQuiz() {
 }
 
 function startMockExam() {
-  if (!window.questionBank || window.questionBank.length === 0) {
+  if (!questionBank || questionBank.length === 0) {
     alert("問題データを読み込めませんでした。data.jsを確認してください。");
     return;
   }
@@ -39,7 +39,7 @@ function startMockExam() {
   score = 0;
   userAnswers = [];
 
-  quizQuestions = [...window.questionBank]
+  quizQuestions = [...questionBank]
     .sort(() => Math.random() - 0.5)
     .slice(0, targetQuestions);
 
@@ -48,7 +48,7 @@ function startMockExam() {
 }
 
 function startWeakQuiz() {
-  if (!window.questionBank || window.questionBank.length === 0) {
+  if (!questionBank || questionBank.length === 0) {
     alert("問題データを読み込めませんでした。");
     return;
   }
@@ -58,7 +58,7 @@ function startWeakQuiz() {
   const mistakes =
     JSON.parse(localStorage.getItem("mistakes")) || [];
 
-  quizQuestions = window.questionBank.filter(
+  quizQuestions = questionBank.filter(
     question => mistakes.includes(question.id)
   );
 
@@ -264,7 +264,7 @@ function updateProgress() {
     percent + "%";
 }
 function startCategoryQuiz(categoryName) {
-  if (!window.questionBank || window.questionBank.length === 0) {
+  if (!questionBank || questionBank.length === 0) {
     alert("問題データを読み込めませんでした。");
     return;
   }
@@ -274,7 +274,7 @@ function startCategoryQuiz(categoryName) {
   score = 0;
   userAnswers = [];
 
-  quizQuestions = window.questionBank.filter(
+  quizQuestions = questionBank.filter(
     question => question.category === categoryName
   );
 
