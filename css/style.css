@@ -629,3 +629,58 @@ footer{
     grid-template-columns: repeat(3, 1fr);
   }
 }
+/* 辞典カテゴリ */
+
+.dictionary-filter-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 16px;
+}
+
+.dictionary-filter-area button {
+  padding: 8px 12px;
+  color: #28533d;
+  background: #eef7f1;
+  border: 1px solid #cfe5d6;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.dictionary-filter-area button:hover {
+  background: #dff0e5;
+}
+
+
+/* 辞典カード上部 */
+
+.dictionary-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.dictionary-card-header h3 {
+  margin: 0 0 8px;
+}
+
+
+/* お気に入りボタン */
+
+.favorite-button {
+  padding: 7px 10px;
+  color: #6c6250;
+  background: #fffaf0;
+  border: 1px solid #ead9b8;
+  border-radius: 18px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.favorite-button.favorite-active {
+  color: #805d00;
+  background: #fff0ac;
+  border-color: #e2bd45;
+}
