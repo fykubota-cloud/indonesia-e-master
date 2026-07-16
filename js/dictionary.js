@@ -31,6 +31,13 @@ function toggleFavoriteWord(word) {
 function setDictionaryCategory(categoryName) {
   selectedDictionaryCategory = categoryName;
   showOnlyFavorites = false;
+
+  const searchInput = document.getElementById("dictionarySearch");
+
+  if (searchInput) {
+    searchInput.value = "";
+  }
+
   renderDictionary();
 }
 
@@ -64,10 +71,13 @@ function renderDictionary() {
       item.category.toLowerCase().includes(keyword) ||
       item.type.toLowerCase().includes(keyword);
 
-    const matchesCategory =
-      selectedDictionaryCategory === "すべて" ||
-      item.category === selectedDictionaryCategory ||
-      item.type === selectedDictionaryCategory;
+   const itemCategory = String(item.category || "").trim();
+const itemType = String(item.type || "").trim();
+
+const matchesCategory =
+  selectedDictionaryCategory === "すべて" ||
+  itemCategory === selectedDictionaryCategory ||
+  itemType === selectedDictionaryCategory;
 
     const matchesFavorite =
       !showOnlyFavorites ||
