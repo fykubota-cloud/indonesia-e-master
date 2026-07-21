@@ -30,18 +30,28 @@ function showReadingTrainer() {
 }
 
 function hideAllAppScreens() {
+  // 通常の各画面を非表示
   const screens = document.querySelectorAll(".screen");
 
   screens.forEach((screen) => {
     screen.style.display = "none";
   });
 
+  // ホーム画面を非表示
+  const homeScreen = document.getElementById("home");
+
+  if (homeScreen) {
+    homeScreen.style.display = "none";
+  }
+
+  // 辞典画面なども念のため非表示
   const knownScreens = [
-    "homeScreen",
-    "quizScreen",
-    "dictionaryScreen",
-    "resultScreen",
-    "categoryScreen"
+    "quiz30",
+    "quiz50",
+    "mock",
+    "weak",
+    "words",
+    "dictionary"
   ];
 
   knownScreens.forEach((id) => {
@@ -306,10 +316,10 @@ function previousReadingText() {
 }
 
 function closeReadingTrainer() {
-  const screen = document.getElementById("readingTrainerScreen");
+  const readingScreen = document.getElementById("readingTrainerScreen");
 
-  if (screen) {
-    screen.style.display = "none";
+  if (readingScreen) {
+    readingScreen.style.display = "none";
   }
 
   if (typeof showScreen === "function") {
@@ -317,7 +327,7 @@ function closeReadingTrainer() {
     return;
   }
 
-  const homeScreen = document.getElementById("homeScreen");
+  const homeScreen = document.getElementById("home");
 
   if (homeScreen) {
     homeScreen.style.display = "block";
