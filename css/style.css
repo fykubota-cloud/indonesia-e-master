@@ -684,3 +684,110 @@ footer{
   background: #fff0ac;
   border-color: #e2bd45;
 }
+/* ========================================
+   Reading Trainer タップ辞書
+======================================== */
+
+.reading-tappable-word {
+  display: inline-block;
+  padding: 1px 3px;
+  margin: 0 1px;
+  border-bottom: 2px dotted #3b82f6;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reading-tappable-word:hover {
+  background: #eaf2ff;
+}
+
+.reading-word-popup {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid #d9e4f2;
+  border-radius: 15px;
+  background: #f8fbff;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.06);
+}
+
+.reading-popup-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.reading-popup-header strong {
+  display: block;
+  font-size: 22px;
+}
+
+.reading-popup-header button {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.reading-popup-type {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #e4eefc;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.reading-popup-meaning {
+  margin-top: 14px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.reading-popup-root {
+  margin: 9px 0 0;
+  font-size: 14px;
+}
+
+.reading-popup-example {
+  margin-top: 14px;
+  padding: 13px;
+  border-radius: 11px;
+  background: white;
+}
+
+.reading-popup-example p {
+  margin: 7px 0 4px;
+  line-height: 1.6;
+}
+
+.reading-popup-example small {
+  line-height: 1.6;
+}
+
+.reading-popup-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.reading-popup-actions button {
+  flex: 1;
+  padding: 11px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .reading-popup-actions {
+    flex-direction: column;
+  }
+}
