@@ -72,25 +72,25 @@ function renderReadingTrainer() {
   }
 
   const sentenceHtml = data.sentences
-    .map(
-      (sentence) => `
-        <div class="reading-sentence">
-          <p class="reading-indonesian">
-            ${escapeReadingHtml(sentence.indonesian)}
-          </p>
+  .map(
+    (sentence) => `
+      <div class="reading-sentence">
+        <p class="reading-indonesian">
+          ${createTappableSentence(sentence.indonesian)}
+        </p>
 
-          <p
-            class="reading-japanese"
-            style="display: ${
-              readingTranslationVisible ? "block" : "none"
-            };"
-          >
-            ${escapeReadingHtml(sentence.japanese)}
-          </p>
-        </div>
-      `
-    )
-    .join("");
+        <p
+          class="reading-japanese"
+          style="display: ${
+            readingTranslationVisible ? "block" : "none"
+          };"
+        >
+          ${escapeReadingHtml(sentence.japanese)}
+        </p>
+      </div>
+    `
+  )
+  .join("");
 
   const vocabularyHtml = data.vocabulary
     .map(
@@ -152,6 +152,8 @@ function renderReadingTrainer() {
         <div class="reading-sentence-list">
           ${sentenceHtml}
         </div>
+        
+<div id="readingWordPopup" class="reading-word-popup" style="display:none;"></div>
 
         <div class="reading-action-row">
           <button
@@ -349,6 +351,197 @@ function escapeReadingAttribute(value) {
     .replaceAll("'", "\\'");
 }
 
+function createTappableSentence(sentence) {
+  const safeSentence = escapeReadingHtml(sentence);
+
+  if (!Array.isArray(window.dictionaryData)) {
+    return safeSentence;
+  }
+
+  const sortedWords = [...window.dictionaryData]
+    .filter((item) => item.word)
+    .sort((a, b) => b.word.length - a.word.length);
+
+  let result = safeSentence;
+
+  sortedWords.forEach((item) => {
+    const word = escapeReadingHtml(item.word);
+    const escapedWordForRegex = escapeRegExp(word);
+
+    const regex = new RegExp(
+      `(^|[\\s,.!?;:()"])(${escapedWordForRegex})(?=$|[\\s,.!?;:()"])`,
+      "gi"
+    );
+
+    result = result.replace(
+      regex,
+      `$1<span class="reading-tappable-word" onclick="showReadingWord('${escapeReadingAttribute(
+        item.word
+      )}')">$2</span>`
+    );
+  });
+
+  return result;
+}
+
+function showReadingWord(word) {
+  const popup = document.getElementById("readingWordPopup");
+
+  if (!popup || !Array.isArray(window.dictionaryData)) {
+    return;
+  }
+
+  const dictionaryItem = window.dictionaryData.find(
+    (item) =>
+      String(item.word || "").toLowerCase() ===
+      String(word || "").toLowerCase()
+  );
+
+  if (!dictionaryItem) {
+    popup.style.display = "block";
+    popup.innerHTML = `
+      <div class="reading-popup-header">
+        <strong>${escapeReadingHtml(word)}</strong>
+        <button type="button" onclick="closeReadingWordPopup()">×</button>
+      </div>
+      <p>辞典に登録されていない単語です。</p>
+    `;
+    return;
+  }
+
+  popup.style.display = "block";
+
+  popup.innerHTML = `
+    <div class="reading-popup-header">
+      <div>
+        <strong>${escapeReadingHtml(dictionaryItem.word)}</strong>
+        <span class="reading-popup-type">
+          ${escapeReadingHtml(
+            dictionaryItem.category ||
+            dictionaryItem.type ||
+            ""
+          )}
+        </span>
+      </div>
+
+      <button
+        type="button"
+        onclick="closeReadingWordPopup()"
+        aria-label="閉じる"
+      >
+        ×
+      </button>
+    </div>
+
+    <div class="reading-popup-meaning">
+      ${escapeReadingHtml(dictionaryItem.meaning || "意味未登録")}
+    </div>
+
+    ${
+      dictionaryItem.root
+        ? `
+          <p class="reading-popup-root">
+            語根：${escapeReadingHtml(dictionaryItem.root)}
+          </p>
+        `
+        : ""
+    }
+
+    ${
+      dictionaryItem.example
+        ? `
+          <div class="reading-popup-example">
+            <strong>例文</strong>
+            <p>${escapeReadingHtml(dictionaryItem.example)}</p>
+            <small>
+              ${escapeReadingHtml(dictionaryItem.translation || "")}
+            </small>
+          </div>
+        `
+        : ""
+    }
+
+    <div class="reading-popup-actions">
+      <button
+        type="button"
+        onclick="speakReadingWord('${escapeReadingAttribute(
+          dictionaryItem.word
+        )}')"
+      >
+        🔊 発音
+      </button>
+
+      <button
+        type="button"
+        onclick="toggleReadingDictionaryFavorite('${escapeReadingAttribute(
+          dictionaryItem.word
+        )}')"
+      >
+        ⭐ お気に入り
+      </button>
+    </div>
+  `;
+}
+
+function closeReadingWordPopup() {
+  const popup = document.getElementById("readingWordPopup");
+
+  if (popup) {
+    popup.style.display = "none";
+    popup.innerHTML = "";
+  }
+}
+
+function speakReadingWord(word) {
+  if (!("speechSynthesis" in window)) {
+    alert("このブラウザは音声読み上げに対応していません。");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(word);
+
+  utterance.lang = "id-ID";
+  utterance.rate = 0.75;
+
+  window.speechSynthesis.speak(utterance);
+}
+
+function toggleReadingDictionaryFavorite(word) {
+  if (typeof toggleFavoriteWord === "function") {
+    toggleFavoriteWord(word);
+    alert(`${word}のお気に入り状態を変更しました。`);
+    return;
+  }
+
+  const storageKey = "dictionaryFavorites";
+  const currentFavorites = JSON.parse(
+    localStorage.getItem(storageKey) || "[]"
+  );
+
+  const exists = currentFavorites.includes(word);
+
+  const updatedFavorites = exists
+    ? currentFavorites.filter((item) => item !== word)
+    : [...currentFavorites, word];
+
+  localStorage.setItem(
+    storageKey,
+    JSON.stringify(updatedFavorites)
+  );
+
+  alert(
+    exists
+      ? `${word}をお気に入りから外しました。`
+      : `${word}をお気に入りに追加しました。`
+  );
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 window.showReadingTrainer = showReadingTrainer;
 window.renderReadingTrainer = renderReadingTrainer;
 window.toggleReadingTranslation = toggleReadingTranslation;
@@ -357,3 +550,9 @@ window.speakCurrentReading = speakCurrentReading;
 window.nextReadingText = nextReadingText;
 window.previousReadingText = previousReadingText;
 window.closeReadingTrainer = closeReadingTrainer;
+
+window.showReadingWord = showReadingWord;
+window.closeReadingWordPopup = closeReadingWordPopup;
+window.speakReadingWord = speakReadingWord;
+window.toggleReadingDictionaryFavorite =
+  toggleReadingDictionaryFavorite;
