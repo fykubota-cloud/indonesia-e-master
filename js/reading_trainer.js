@@ -28,6 +28,11 @@ function showReadingTrainer() {
 
   renderReadingTrainer();
 }
+const savedIndex = localStorage.getItem("readingCurrentIndex");
+
+if (savedIndex !== null) {
+    readingCurrentIndex = Number(savedIndex);
+}
 
 function hideAllAppScreens() {
   // 通常の各画面を非表示
