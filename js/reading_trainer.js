@@ -1,6 +1,10 @@
 let currentReadingIndex = 0;
 let readingTranslationVisible = false;
 
+/* ========================================
+   長文トレーニングを開く
+======================================== */
+
 function showReadingTrainer() {
   if (
     !Array.isArray(window.readingTrainerData) ||
@@ -23,41 +27,43 @@ function showReadingTrainer() {
   hideAllAppScreens();
   screen.style.display = "block";
 
-  currentReadingIndex = 0;
+  // 前回開いていた長文番号を読み込む
+  const savedIndex = localStorage.getItem("readingCurrentIndex");
+  const parsedIndex = Number(savedIndex);
+
+  if (
+    savedIndex !== null &&
+    Number.isInteger(parsedIndex) &&
+    parsedIndex >= 0 &&
+    parsedIndex < window.readingTrainerData.length
+  ) {
+    currentReadingIndex = parsedIndex;
+  } else {
+    currentReadingIndex = 0;
+  }
+
   readingTranslationVisible = false;
 
   renderReadingTrainer();
 }
-const savedIndex = localStorage.getItem("readingCurrentIndex");
 
-if (savedIndex !== null) {
-    readingCurrentIndex = Number(savedIndex);
-}
-localStorage.setItem(
-    "readingCurrentIndex",
-    readingCurrentIndex
-);
-localStorage.setItem(
-    "readingCurrentIndex",
-    readingCurrentIndex
-);
+/* ========================================
+   他の画面を非表示
+======================================== */
 
 function hideAllAppScreens() {
-  // 通常の各画面を非表示
   const screens = document.querySelectorAll(".screen");
 
   screens.forEach((screen) => {
     screen.style.display = "none";
   });
 
-  // ホーム画面を非表示
   const homeScreen = document.getElementById("home");
 
   if (homeScreen) {
     homeScreen.style.display = "none";
   }
 
-  // 辞典画面なども念のため非表示
   const knownScreens = [
     "quiz30",
     "quiz50",
@@ -76,6 +82,10 @@ function hideAllAppScreens() {
   });
 }
 
+/* ========================================
+   長文画面を表示
+======================================== */
+
 function renderReadingTrainer() {
   const screen = document.getElementById("readingTrainerScreen");
   const data = window.readingTrainerData[currentReadingIndex];
@@ -85,25 +95,25 @@ function renderReadingTrainer() {
   }
 
   const sentenceHtml = data.sentences
-  .map(
-    (sentence) => `
-      <div class="reading-sentence">
-        <p class="reading-indonesian">
-          ${createTappableSentence(sentence.indonesian)}
-        </p>
+    .map(
+      (sentence) => `
+        <div class="reading-sentence">
+          <p class="reading-indonesian">
+            ${createTappableSentence(sentence.indonesian)}
+          </p>
 
-        <p
-          class="reading-japanese"
-          style="display: ${
-            readingTranslationVisible ? "block" : "none"
-          };"
-        >
-          ${escapeReadingHtml(sentence.japanese)}
-        </p>
-      </div>
-    `
-  )
-  .join("");
+          <p
+            class="reading-japanese"
+            style="display: ${
+              readingTranslationVisible ? "block" : "none"
+            };"
+          >
+            ${escapeReadingHtml(sentence.japanese)}
+          </p>
+        </div>
+      `
+    )
+    .join("");
 
   const vocabularyHtml = data.vocabulary
     .map(
@@ -143,7 +153,8 @@ function renderReadingTrainer() {
         </button>
 
         <div class="reading-progress">
-          ${currentReadingIndex + 1} / ${window.readingTrainerData.length}
+          ${currentReadingIndex + 1} /
+          ${window.readingTrainerData.length}
         </div>
       </div>
 
@@ -165,8 +176,12 @@ function renderReadingTrainer() {
         <div class="reading-sentence-list">
           ${sentenceHtml}
         </div>
-        
-<div id="readingWordPopup" class="reading-word-popup" style="display:none;"></div>
+
+        <div
+          id="readingWordPopup"
+          class="reading-word-popup"
+          style="display:none;"
+        ></div>
 
         <div class="reading-action-row">
           <button
@@ -240,10 +255,18 @@ function renderReadingTrainer() {
   `;
 }
 
+/* ========================================
+   日本語訳の表示・非表示
+======================================== */
+
 function toggleReadingTranslation() {
   readingTranslationVisible = !readingTranslationVisible;
   renderReadingTrainer();
 }
+
+/* ========================================
+   確認問題
+======================================== */
 
 function answerReadingQuestion(selectedChoice) {
   const data = window.readingTrainerData[currentReadingIndex];
@@ -274,6 +297,10 @@ function answerReadingQuestion(selectedChoice) {
   `;
 }
 
+/* ========================================
+   長文音声読み上げ
+======================================== */
+
 function speakCurrentReading() {
   const data = window.readingTrainerData[currentReadingIndex];
 
@@ -301,12 +328,23 @@ function speakCurrentReading() {
   window.speechSynthesis.speak(utterance);
 }
 
+/* ========================================
+   次の長文へ
+======================================== */
+
 function nextReadingText() {
   if (
     currentReadingIndex <
     window.readingTrainerData.length - 1
   ) {
     currentReadingIndex += 1;
+
+    // 現在の位置を保存
+    localStorage.setItem(
+      "readingCurrentIndex",
+      String(currentReadingIndex)
+    );
+
     readingTranslationVisible = false;
     renderReadingTrainer();
 
@@ -316,10 +354,21 @@ function nextReadingText() {
     });
   }
 }
+
+/* ========================================
+   前の長文へ
+======================================== */
 
 function previousReadingText() {
   if (currentReadingIndex > 0) {
     currentReadingIndex -= 1;
+
+    // 現在の位置を保存
+    localStorage.setItem(
+      "readingCurrentIndex",
+      String(currentReadingIndex)
+    );
+
     readingTranslationVisible = false;
     renderReadingTrainer();
 
@@ -330,8 +379,13 @@ function previousReadingText() {
   }
 }
 
+/* ========================================
+   ホームへ戻る
+======================================== */
+
 function closeReadingTrainer() {
-  const readingScreen = document.getElementById("readingTrainerScreen");
+  const readingScreen =
+    document.getElementById("readingTrainerScreen");
 
   if (readingScreen) {
     readingScreen.style.display = "none";
@@ -349,6 +403,10 @@ function closeReadingTrainer() {
   }
 }
 
+/* ========================================
+   HTML文字の安全処理
+======================================== */
+
 function escapeReadingHtml(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -363,6 +421,10 @@ function escapeReadingAttribute(value) {
     .replaceAll("\\", "\\\\")
     .replaceAll("'", "\\'");
 }
+
+/* ========================================
+   長文内タップ辞書
+======================================== */
 
 function createTappableSentence(sentence) {
   const safeSentence = escapeReadingHtml(sentence);
@@ -397,6 +459,10 @@ function createTappableSentence(sentence) {
   return result;
 }
 
+/* ========================================
+   辞書カード表示
+======================================== */
+
 function showReadingWord(word) {
   const popup = document.getElementById("readingWordPopup");
 
@@ -412,13 +478,22 @@ function showReadingWord(word) {
 
   if (!dictionaryItem) {
     popup.style.display = "block";
+
     popup.innerHTML = `
       <div class="reading-popup-header">
         <strong>${escapeReadingHtml(word)}</strong>
-        <button type="button" onclick="closeReadingWordPopup()">×</button>
+
+        <button
+          type="button"
+          onclick="closeReadingWordPopup()"
+        >
+          ×
+        </button>
       </div>
+
       <p>辞典に登録されていない単語です。</p>
     `;
+
     return;
   }
 
@@ -427,7 +502,10 @@ function showReadingWord(word) {
   popup.innerHTML = `
     <div class="reading-popup-header">
       <div>
-        <strong>${escapeReadingHtml(dictionaryItem.word)}</strong>
+        <strong>
+          ${escapeReadingHtml(dictionaryItem.word)}
+        </strong>
+
         <span class="reading-popup-type">
           ${escapeReadingHtml(
             dictionaryItem.category ||
@@ -447,14 +525,17 @@ function showReadingWord(word) {
     </div>
 
     <div class="reading-popup-meaning">
-      ${escapeReadingHtml(dictionaryItem.meaning || "意味未登録")}
+      ${escapeReadingHtml(
+        dictionaryItem.meaning || "意味未登録"
+      )}
     </div>
 
     ${
       dictionaryItem.root
         ? `
           <p class="reading-popup-root">
-            語根：${escapeReadingHtml(dictionaryItem.root)}
+            語根：
+            ${escapeReadingHtml(dictionaryItem.root)}
           </p>
         `
         : ""
@@ -465,9 +546,15 @@ function showReadingWord(word) {
         ? `
           <div class="reading-popup-example">
             <strong>例文</strong>
-            <p>${escapeReadingHtml(dictionaryItem.example)}</p>
+
+            <p>
+              ${escapeReadingHtml(dictionaryItem.example)}
+            </p>
+
             <small>
-              ${escapeReadingHtml(dictionaryItem.translation || "")}
+              ${escapeReadingHtml(
+                dictionaryItem.translation || ""
+              )}
             </small>
           </div>
         `
@@ -496,6 +583,10 @@ function showReadingWord(word) {
   `;
 }
 
+/* ========================================
+   辞書カードを閉じる
+======================================== */
+
 function closeReadingWordPopup() {
   const popup = document.getElementById("readingWordPopup");
 
@@ -504,6 +595,10 @@ function closeReadingWordPopup() {
     popup.innerHTML = "";
   }
 }
+
+/* ========================================
+   単語音声読み上げ
+======================================== */
 
 function speakReadingWord(word) {
   if (!("speechSynthesis" in window)) {
@@ -521,17 +616,36 @@ function speakReadingWord(word) {
   window.speechSynthesis.speak(utterance);
 }
 
+/* ========================================
+   辞典のお気に入り連携
+======================================== */
+
 function toggleReadingDictionaryFavorite(word) {
   if (typeof toggleFavoriteWord === "function") {
     toggleFavoriteWord(word);
-    alert(`${word}のお気に入り状態を変更しました。`);
+
+    alert(
+      `${word}のお気に入り状態を変更しました。`
+    );
+
     return;
   }
 
   const storageKey = "dictionaryFavorites";
-  const currentFavorites = JSON.parse(
-    localStorage.getItem(storageKey) || "[]"
-  );
+
+  let currentFavorites = [];
+
+  try {
+    currentFavorites = JSON.parse(
+      localStorage.getItem(storageKey) || "[]"
+    );
+  } catch (error) {
+    currentFavorites = [];
+  }
+
+  if (!Array.isArray(currentFavorites)) {
+    currentFavorites = [];
+  }
 
   const exists = currentFavorites.includes(word);
 
@@ -551,21 +665,41 @@ function toggleReadingDictionaryFavorite(word) {
   );
 }
 
+/* ========================================
+   正規表現用の文字処理
+======================================== */
+
 function escapeRegExp(value) {
-  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return String(value).replace(
+    /[.*+?^${}()|[\]\\]/g,
+    "\\$&"
+  );
 }
+
+/* ========================================
+   HTMLから呼び出せるように公開
+======================================== */
 
 window.showReadingTrainer = showReadingTrainer;
 window.renderReadingTrainer = renderReadingTrainer;
-window.toggleReadingTranslation = toggleReadingTranslation;
-window.answerReadingQuestion = answerReadingQuestion;
-window.speakCurrentReading = speakCurrentReading;
-window.nextReadingText = nextReadingText;
-window.previousReadingText = previousReadingText;
-window.closeReadingTrainer = closeReadingTrainer;
+window.toggleReadingTranslation =
+  toggleReadingTranslation;
+window.answerReadingQuestion =
+  answerReadingQuestion;
+window.speakCurrentReading =
+  speakCurrentReading;
+window.nextReadingText =
+  nextReadingText;
+window.previousReadingText =
+  previousReadingText;
+window.closeReadingTrainer =
+  closeReadingTrainer;
 
-window.showReadingWord = showReadingWord;
-window.closeReadingWordPopup = closeReadingWordPopup;
-window.speakReadingWord = speakReadingWord;
+window.showReadingWord =
+  showReadingWord;
+window.closeReadingWordPopup =
+  closeReadingWordPopup;
+window.speakReadingWord =
+  speakReadingWord;
 window.toggleReadingDictionaryFavorite =
   toggleReadingDictionaryFavorite;
