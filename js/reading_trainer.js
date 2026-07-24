@@ -33,6 +33,14 @@ const savedIndex = localStorage.getItem("readingCurrentIndex");
 if (savedIndex !== null) {
     readingCurrentIndex = Number(savedIndex);
 }
+localStorage.setItem(
+    "readingCurrentIndex",
+    readingCurrentIndex
+);
+localStorage.setItem(
+    "readingCurrentIndex",
+    readingCurrentIndex
+);
 
 function hideAllAppScreens() {
   // 通常の各画面を非表示
